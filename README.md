@@ -70,7 +70,7 @@ To run the container interactively (foreground):
         -e HALO_API_KEY=$HALO_API_KEY \
         -e HALO_API_SECRET_KEY=$HALO_API_SECRET_KEY \
         -e HALO_QUARANTINE_GROUP=$HALO_QUARANTINE_GROUP \
-        cloudpassage_ticketing
+        cloudpassage_quarantine
 
 
 If you want to run quarantine in the background, you can start it like this:
@@ -79,7 +79,7 @@ If you want to run quarantine in the background, you can start it like this:
         -e HALO_API_KEY=$HALO_API_KEY \
         -e HALO_API_SECRET_KEY=$HALO_API_SECRET_KEY \
         -e HALO_QUARANTINE_GROUP=$HALO_QUARANTINE_GROUP \
-        cloudpassage_ticketing
+        cloudpassage_quarantine
 
 
 Use `docker ps` to make sure it's running.  The container logs will be updated
