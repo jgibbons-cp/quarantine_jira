@@ -44,7 +44,8 @@ Clone the code and build the container:
         cd quarantine_ticketing
         docker build -t cloudpassage_ticketing .
         
-If working with Jira, configure your JIRA information in `configs/config.yml`
+If working with Jira, configure your JIRA information in `configs/config.yml`  
+If working with ServiceNow configure your ServiceNow instance in service_now_test.py by populating servicenow_instance = ""  For example, if your ServiceNow instance is https://dev13462.service-now.com then set the variable to "dev13462"
 
 Set these environment variables:
 
