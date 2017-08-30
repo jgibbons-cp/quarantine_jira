@@ -9,7 +9,7 @@ class ServiceNowTest(object):
         pass
 
     def create_incident(self, event):
-        servicenow_instance = "dev13462",
+        servicenow_instance = "",
         short_description="",
         snow_api_user_id = os.getenv("SNOW_USERNAME")
         snow_api_password = os.getenv("SNOW_PASSWORD")
