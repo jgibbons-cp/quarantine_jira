@@ -1,13 +1,13 @@
-# Quarantine-Jira
+# Quarantine-Ticketing
 
 Version: *1.0*
 
-Fork from: https://github.com/cloudpassage/quarantine.git
+Fork from: https://github.com/mong2/quarantine_jira
 
 ## Purpose
 This containerized application monitors the /v1/events endpoint in the Halo API,
 looking for specific events.  If a targeted event is matched, the tool will
-move the workload into the configured quarantine group or create a JIRA ticket with 
+move the workload into the configured quarantine group or create a JIRA or ServiceNow ticket with 
 event information.
 
 ## How it works
@@ -32,7 +32,7 @@ all outbound traffic, and only allows inbound traffic from Ghostports users.
 * Make sure that your policies are configured to create events on failure.
 * You'll need an administrative (read + write) API key for your Halo account.
 * You'll need to have Docker installed.
-* You'll need a JIRA account
+* You'll need a JIRA or ServiceNow account
 * Create a quarantine group in your Halo account, with the appropriately
 restrictive firewall rules.
 
@@ -40,11 +40,11 @@ restrictive firewall rules.
 ## Using the tool
 Clone the code and build the container:
 
-        git clone https://github.com/mong2/quarantine_jira
-        cd quarantine_jira
-        docker build -t cloudpassage_quarantine .
+        git clone https://github.com/jgibbons-cp/quarantine_ticketing
+        cd quarantine_ticketing
+        docker build -t cloudpassage_ticketing .
         
-Configure your JIRA information in `configs/config.yml`
+If working with Jira, configure your JIRA information in `configs/config.yml`
 
 Set these environment variables:
 
@@ -60,6 +60,8 @@ Optionally, define these as well:
 | Variable            | Purpose                                   |
 |---------------------|-------------------------------------------|
 | HALO_EVENTS_START   | ISO8601 timestamp for starting event      |
+| SNOW_USERNAME       | ServiceNow Username                       |
+| SNOW_PASSWORD       | ServiceNow Password                       |
 
 
 To run the container interactively (foreground):
@@ -68,7 +70,7 @@ To run the container interactively (foreground):
         -e HALO_API_KEY=$HALO_API_KEY \
         -e HALO_API_SECRET_KEY=$HALO_API_SECRET_KEY \
         -e HALO_QUARANTINE_GROUP=$HALO_QUARANTINE_GROUP \
-        cloudpassage_quarantine
+        cloudpassage_ticketing
 
 
 If you want to run quarantine in the background, you can start it like this:
@@ -77,7 +79,7 @@ If you want to run quarantine in the background, you can start it like this:
         -e HALO_API_KEY=$HALO_API_KEY \
         -e HALO_API_SECRET_KEY=$HALO_API_SECRET_KEY \
         -e HALO_QUARANTINE_GROUP=$HALO_QUARANTINE_GROUP \
-        cloudpassage_quarantine
+        cloudpassage_ticketing
 
 
 Use `docker ps` to make sure it's running.  The container logs will be updated
